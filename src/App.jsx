@@ -18,7 +18,11 @@ function App() {
 
   function handleCompleteTodo(index){
     //update/edit/modify
-    let newTodoList = []
+    let newTodoList = [...todos]
+    let completedTodo = todos[index]
+    completedTodo['complete'] = true
+    newTodoList[index] = completedTodo
+    setTodos(newTodoList)
   }
 
   function handleDeleteTodo(index){
@@ -32,7 +36,7 @@ function App() {
     <>
       <Header todos={todos}/>
       <Tabs selectedTab={selectedTab} setSelectedTab={setSelectedTab} todos={todos}/>
-      <TodoList selectedTab={selectedTab} todos={todos} handleDeleteTodo={handleDeleteTodo}/>
+      <TodoList selectedTab={selectedTab} todos={todos} handleDeleteTodo={handleDeleteTodo} handleCompleteTodo={handleCompleteTodo}/>
       <TodoInput handleAddTodo={handleAddTodo}/>
     </>
   )
